@@ -363,8 +363,12 @@ sub _all_stopwords {
 
 sub _default_stopwords {
     qw(
-        DROLSKY
-        DROLSKY's
+        Alders
+        Alders'
+        Eilam
+        Eilam's
+        Oschwald
+        Oschwald's
         Rolsky
         Rolsky's
     );
