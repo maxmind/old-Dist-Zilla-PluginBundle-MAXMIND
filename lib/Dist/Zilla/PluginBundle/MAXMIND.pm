@@ -15,7 +15,8 @@ use Pod::Weaver::Section::Contributors;
 use Dist::Zilla::Plugin::Authority;
 use Dist::Zilla::Plugin::AutoPrereqs;
 use Dist::Zilla::Plugin::CheckPrereqsIndexed;
-use Dist::Zilla::Plugin::CopyReadmeFromBuild;
+use Dist::Zilla::Plugin::CopyFilesFromBuild;
+use Dist::Zilla::Plugin::CPANFile;
 use Dist::Zilla::Plugin::EOLTests;
 use Dist::Zilla::Plugin::Git::Check;
 use Dist::Zilla::Plugin::Git::CheckFor::MergeConflicts;
@@ -167,7 +168,13 @@ sub _build_plugins {
         }
     }
 
-    my @allow_dirty = qw( Changes CONTRIBUTING.md README.md );
+    my @allow_dirty = qw(
+        Changes
+        cpanfile
+        CONTRIBUTING.md
+        Makefile.PL
+        README.md
+    );
     my @plugins     = (
         $self->make_tool(),
         [
@@ -180,6 +187,11 @@ sub _build_plugins {
             AutoPrereqs => {
                 $self->_has_prereqs_skip() ? ( skip => $self->prereqs_skip() )
                 : ()
+            },
+        ],
+        [
+            CopyFilesFromBuild => {
+                copy => [qw( cpanfile Makefile.PL )],
             },
         ],
         [
@@ -264,7 +276,7 @@ sub _build_plugins {
             ),
         qw(
             CheckPrereqsIndexed
-            CopyReadmeFromBuild
+            CPANFile
             Git::CheckFor::CorrectBranch
             Git::CheckFor::MergeConflicts
             Git::Describe
