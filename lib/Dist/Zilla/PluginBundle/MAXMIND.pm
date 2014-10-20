@@ -33,6 +33,7 @@ use Dist::Zilla::Plugin::MetaConfig;
 use Dist::Zilla::Plugin::MetaJSON;
 use Dist::Zilla::Plugin::MetaProvides::Package;
 use Dist::Zilla::Plugin::MetaResources;
+use Dist::Zilla::Plugin::MinimumPerl;
 use Dist::Zilla::Plugin::MojibakeTests;
 use Dist::Zilla::Plugin::NextRelease;
 use Dist::Zilla::Plugin::PkgVersion;
@@ -201,7 +202,7 @@ sub _build_plugins {
         }
     }
 
-    my @plugins     = (
+    my @plugins = (
         $self->make_tool(),
         [
             Authority => {
@@ -311,6 +312,7 @@ sub _build_plugins {
             Meta::Contributors
             MetaConfig
             MetaJSON
+            MinimumPerl
             PkgVersion
             SurgicalPodWeaver
             ),
