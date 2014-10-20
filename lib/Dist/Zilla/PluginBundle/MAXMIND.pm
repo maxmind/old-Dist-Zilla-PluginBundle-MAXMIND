@@ -14,9 +14,9 @@ use Pod::Weaver::Section::Contributors;
 # For the benefit of AutoPrereqs
 use Dist::Zilla::Plugin::Authority;
 use Dist::Zilla::Plugin::AutoPrereqs;
+use Dist::Zilla::Plugin::CPANFile;
 use Dist::Zilla::Plugin::CheckPrereqsIndexed;
 use Dist::Zilla::Plugin::CopyFilesFromBuild;
-use Dist::Zilla::Plugin::CPANFile;
 use Dist::Zilla::Plugin::EOLTests;
 use Dist::Zilla::Plugin::Git::Check;
 use Dist::Zilla::Plugin::Git::CheckFor::MergeConflicts;
