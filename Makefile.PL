@@ -11,16 +11,17 @@ use ExtUtils::MakeMaker ;
 
 my %WriteMakefileArgs = (
   "ABSTRACT" => "DROLSKY's plugin bundle",
-  "AUTHOR" => "Dave Rolsky <autarch\@urth.org>",
+  "AUTHOR" => "Dave Rolsky <drolsky\@maxmind.com>",
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => 0
   },
   "DISTNAME" => "Dist-Zilla-PluginBundle-MAXMIND",
   "EXE_FILES" => [],
-  "LICENSE" => "artistic_2",
+  "LICENSE" => "perl",
   "NAME" => "Dist::Zilla::PluginBundle::MAXMIND",
   "PREREQ_PM" => {
     "Dist::Zilla" => 0,
+    "Dist::Zilla::File::InMemory" => 0,
     "Dist::Zilla::Plugin::Authority" => 0,
     "Dist::Zilla::Plugin::AutoPrereqs" => 0,
     "Dist::Zilla::Plugin::CPANFile" => 0,
@@ -61,6 +62,8 @@ my %WriteMakefileArgs = (
     "Dist::Zilla::Plugin::Test::Portability" => 0,
     "Dist::Zilla::Plugin::Test::ReportPrereqs" => 0,
     "Dist::Zilla::Plugin::Test::Synopsis" => 0,
+    "Dist::Zilla::Role::AfterBuild" => 0,
+    "Dist::Zilla::Role::BeforeBuild" => 0,
     "Dist::Zilla::Role::PluginBundle::Easy" => 0,
     "Dist::Zilla::Role::PluginBundle::PluginRemover" => 0,
     "Moose" => 0,
@@ -85,6 +88,7 @@ my %WriteMakefileArgs = (
 
 my %FallbackPrereqs = (
   "Dist::Zilla" => 0,
+  "Dist::Zilla::File::InMemory" => 0,
   "Dist::Zilla::Plugin::Authority" => 0,
   "Dist::Zilla::Plugin::AutoPrereqs" => 0,
   "Dist::Zilla::Plugin::CPANFile" => 0,
@@ -125,6 +129,8 @@ my %FallbackPrereqs = (
   "Dist::Zilla::Plugin::Test::Portability" => 0,
   "Dist::Zilla::Plugin::Test::ReportPrereqs" => 0,
   "Dist::Zilla::Plugin::Test::Synopsis" => 0,
+  "Dist::Zilla::Role::AfterBuild" => 0,
+  "Dist::Zilla::Role::BeforeBuild" => 0,
   "Dist::Zilla::Role::PluginBundle::Easy" => 0,
   "Dist::Zilla::Role::PluginBundle::PluginRemover" => 0,
   "ExtUtils::MakeMaker" => 0,

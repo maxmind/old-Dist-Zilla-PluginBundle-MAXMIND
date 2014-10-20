@@ -1,4 +1,5 @@
 requires "Dist::Zilla" => "0";
+requires "Dist::Zilla::File::InMemory" => "0";
 requires "Dist::Zilla::Plugin::Authority" => "0";
 requires "Dist::Zilla::Plugin::AutoPrereqs" => "0";
 requires "Dist::Zilla::Plugin::CPANFile" => "0";
@@ -39,6 +40,8 @@ requires "Dist::Zilla::Plugin::Test::PodSpelling" => "0";
 requires "Dist::Zilla::Plugin::Test::Portability" => "0";
 requires "Dist::Zilla::Plugin::Test::ReportPrereqs" => "0";
 requires "Dist::Zilla::Plugin::Test::Synopsis" => "0";
+requires "Dist::Zilla::Role::AfterBuild" => "0";
+requires "Dist::Zilla::Role::BeforeBuild" => "0";
 requires "Dist::Zilla::Role::PluginBundle::Easy" => "0";
 requires "Dist::Zilla::Role::PluginBundle::PluginRemover" => "0";
 requires "Moose" => "0";
