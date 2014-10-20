@@ -380,7 +380,7 @@ sub configure {
 
 1;
 
-# ABSTRACT: DROLSKY's plugin bundle
+# ABSTRACT: MaxMind's plugin bundle
 
 __END__
 
