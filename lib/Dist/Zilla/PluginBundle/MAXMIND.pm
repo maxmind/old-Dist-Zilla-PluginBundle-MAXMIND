@@ -144,14 +144,34 @@ has _plugins => (
     builder  => '_build_plugins',
 );
 
-my @array_params = grep { !/^_/ } map { $_->name() }
-    grep {
-           $_->has_type_constraint()
-        && $_->type_constraint()->is_a_type_of('ArrayRef')
-    } __PACKAGE__->meta()->get_all_attributes();
+{
+    my @array_params = grep { !/^_/ } map { $_->name() }
+        grep {
+               $_->has_type_constraint()
+            && $_->type_constraint()->is_a_type_of('ArrayRef')
+        } __PACKAGE__->meta()->get_all_attributes();
 
-sub mvp_multivalue_args {
-    return @array_params;
+    sub mvp_multivalue_args {
+        return @array_params;
+    }
+
+    around BUILDARGS => sub {
+        my $orig  = shift;
+        my $class = shift;
+
+        my $p = $class->$orig(@_);
+
+        my %args = ( %{ $p->{payload} }, %{$p} );
+
+        for my $key (@array_params) {
+            if ( $args{$key} && !ref $args{$key} ) {
+                $args{$key} = [ delete $args{$key} ];
+            }
+            $args{$key} //= [];
+        }
+
+        return \%args;
+    };
 }
 
 sub _build_plugins {
@@ -316,27 +336,6 @@ sub _build_plugins {
     );
 
     return \@plugins;
-}
-
-{
-
-    around BUILDARGS => sub {
-        my $orig  = shift;
-        my $class = shift;
-
-        my $p = $class->$orig(@_);
-
-        my %args = ( %{ $p->{payload} }, %{$p} );
-
-        for my $key (@array_params) {
-            if ( $args{$key} && !ref $args{$key} ) {
-                $args{$key} = [ delete $args{$key} ];
-            }
-            $args{$key} //= [];
-        }
-
-        return \%args;
-    };
 }
 
 sub _all_stopwords {
