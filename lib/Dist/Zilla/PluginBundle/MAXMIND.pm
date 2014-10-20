@@ -182,12 +182,14 @@ sub _build_plugins {
         Changes
         cpanfile
         CONTRIBUTING.md
+        LICENSE
         Makefile.PL
         README.md
     );
 
     my %exclude_filename = map { $_ => 1 } qw(
         cpanfile
+        LICENSE
         Makefile.PL
         README.md
     );
@@ -218,7 +220,7 @@ sub _build_plugins {
         ],
         [
             CopyFilesFromBuild => {
-                copy => [qw( cpanfile Makefile.PL )],
+                copy => [qw( cpanfile LICENSE Makefile.PL )],
             },
         ],
         [
