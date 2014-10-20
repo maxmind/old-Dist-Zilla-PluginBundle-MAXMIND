@@ -288,6 +288,9 @@ sub _build_plugins {
                 filename => 'README.md',
             },
         ],
+        [
+            UploadToCPAN => { pause_cfg_file => '.pause-maxmind' },
+        ],
 
         # from @Basic
         qw(
@@ -301,7 +304,6 @@ sub _build_plugins {
             Manifest
             TestRelease
             ConfirmRelease
-            UploadToCPAN
             ),
         qw(
             CheckPrereqsIndexed
