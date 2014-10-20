@@ -157,7 +157,20 @@ sub mvp_multivalue_args {
 sub _build_plugins {
     my $self = shift;
 
-    my %exclude_filename = ( 'README.md' => 1 );
+    my @allow_dirty = qw(
+        Changes
+        cpanfile
+        CONTRIBUTING.md
+        Makefile.PL
+        README.md
+    );
+
+    my %exclude_filename = map { $_ => 1 } qw(
+        cpanfile
+        Makefile.PL
+        README.md
+    );
+
     my @exclude_match;
     for my $exclude ( @{ $self->exclude_files() } ) {
         if ( $exclude =~ m{^[\w\-\./]+$} ) {
@@ -168,13 +181,6 @@ sub _build_plugins {
         }
     }
 
-    my @allow_dirty = qw(
-        Changes
-        cpanfile
-        CONTRIBUTING.md
-        Makefile.PL
-        README.md
-    );
     my @plugins     = (
         $self->make_tool(),
         [
