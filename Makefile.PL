@@ -10,7 +10,7 @@ use ExtUtils::MakeMaker ;
 
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "DROLSKY's plugin bundle",
+  "ABSTRACT" => "MaxMind's plugin bundle",
   "AUTHOR" => "Dave Rolsky <drolsky\@maxmind.com>",
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => 0

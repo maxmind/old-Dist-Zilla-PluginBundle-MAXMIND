@@ -1,6 +1,6 @@
 # NAME
 
-Dist::Zilla::PluginBundle::MAXMIND - DROLSKY's plugin bundle
+Dist::Zilla::PluginBundle::MAXMIND - MaxMind's plugin bundle
 
 # VERSION
 
