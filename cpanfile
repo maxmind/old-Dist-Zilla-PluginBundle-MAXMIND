@@ -25,7 +25,6 @@ requires "Dist::Zilla::Plugin::MinimumPerl" => "0";
 requires "Dist::Zilla::Plugin::MojibakeTests" => "0";
 requires "Dist::Zilla::Plugin::NextRelease" => "0";
 requires "Dist::Zilla::Plugin::PkgVersion" => "0";
-requires "Dist::Zilla::Plugin::PodCoverageTests" => "0";
 requires "Dist::Zilla::Plugin::PodSyntaxTests" => "0";
 requires "Dist::Zilla::Plugin::PromptIfStale" => "0";
 requires "Dist::Zilla::Plugin::ReadmeAnyFromPod" => "0";
@@ -70,12 +69,10 @@ on 'configure' => sub {
 };
 
 on 'develop' => sub {
-  requires "Pod::Coverage::TrustPod" => "0";
   requires "Test::CPAN::Changes" => "0.19";
-  requires "Test::More" => "0.88";
+  requires "Test::More" => "0";
   requires "Test::NoTabs" => "0";
   requires "Test::Pod" => "1.41";
-  requires "Test::Pod::Coverage" => "1.08";
   requires "Test::Spelling" => "0.12";
   requires "Test::Synopsis" => "0";
 };
