@@ -368,6 +368,8 @@ sub _default_stopwords {
         Alders'
         Eilam
         Eilam's
+        MaxMind
+        MaxMind's
         Oschwald
         Oschwald's
         Rolsky
