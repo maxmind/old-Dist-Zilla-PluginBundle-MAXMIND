@@ -29,6 +29,7 @@ use Dist::Zilla::Plugin::GitHub::Meta;
 use Dist::Zilla::Plugin::GitHub::Update;
 use Dist::Zilla::Plugin::InstallGuide;
 use Dist::Zilla::Plugin::MAXMIND::Contributors;
+use Dist::Zilla::Plugin::MAXMIND::License;
 use Dist::Zilla::Plugin::Meta::Contributors;
 use Dist::Zilla::Plugin::MetaConfig;
 use Dist::Zilla::Plugin::MetaJSON;
@@ -315,6 +316,7 @@ sub _build_plugins {
             Git::Contributors
             InstallGuide
             MAXMIND::Contributors
+            MAXMIND::License
             Meta::Contributors
             MetaConfig
             MetaJSON
