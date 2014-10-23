@@ -17,7 +17,6 @@ use Dist::Zilla::Plugin::AutoPrereqs;
 use Dist::Zilla::Plugin::CPANFile;
 use Dist::Zilla::Plugin::CheckPrereqsIndexed;
 use Dist::Zilla::Plugin::CopyFilesFromBuild;
-use Dist::Zilla::Plugin::EOLTests;
 use Dist::Zilla::Plugin::Git::Check;
 use Dist::Zilla::Plugin::Git::CheckFor::MergeConflicts;
 use Dist::Zilla::Plugin::Git::Commit;
@@ -45,6 +44,7 @@ use Dist::Zilla::Plugin::ReadmeAnyFromPod;
 use Dist::Zilla::Plugin::SurgicalPodWeaver;
 use Dist::Zilla::Plugin::Test::CPAN::Changes;
 use Dist::Zilla::Plugin::Test::Compile;
+use Dist::Zilla::Plugin::Test::EOL 0.14;
 use Dist::Zilla::Plugin::Test::NoTabs;
 use Dist::Zilla::Plugin::Test::Pod::Coverage::Configurable;
 use Dist::Zilla::Plugin::Test::PodSpelling;
@@ -322,10 +322,10 @@ sub _build_plugins {
             SurgicalPodWeaver
             ),
         qw(
-            EOLTests
             PodSyntaxTests
             Test::CPAN::Changes
             Test::Compile
+            Test::EOL
             Test::NoTabs
             Test::Portability
             Test::Synopsis
