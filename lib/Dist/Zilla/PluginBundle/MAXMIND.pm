@@ -47,8 +47,6 @@ use Dist::Zilla::Plugin::Test::CPAN::Changes;
 use Dist::Zilla::Plugin::Test::Compile;
 use Dist::Zilla::Plugin::Test::NoTabs;
 use Dist::Zilla::Plugin::Test::Pod::Coverage::Configurable;
-use Dist::Zilla::Plugin::Test::Pod::LinkCheck;
-use Dist::Zilla::Plugin::Test::Pod::No404s;
 use Dist::Zilla::Plugin::Test::PodSpelling;
 use Dist::Zilla::Plugin::Test::Portability;
 use Dist::Zilla::Plugin::Test::ReportPrereqs;
@@ -329,8 +327,6 @@ sub _build_plugins {
             Test::CPAN::Changes
             Test::Compile
             Test::NoTabs
-            Test::Pod::LinkCheck
-            Test::Pod::No404s
             Test::Portability
             Test::Synopsis
             ),

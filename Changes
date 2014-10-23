@@ -1,5 +1,8 @@
 {{$NEXT}}
 
+- Removed the Test::Pod::LinkCheck and Test::Pod::No404s plugins.
+
+
 0.01     2014-10-22
 
 - First release upon an unsuspecting world.
