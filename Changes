@@ -1,5 +1,7 @@
 {{$NEXT}}
 
+0.03     2014-11-02
+
 - Exclude plugins shipped with this bundle when checking for stale modules.
 
 

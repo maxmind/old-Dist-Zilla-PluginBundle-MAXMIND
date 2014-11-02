@@ -56,6 +56,7 @@ on 'test' => sub {
   requires "IO::Handle" => "0";
   requires "IPC::Open3" => "0";
   requires "Test::More" => "0.88";
+  requires "perl" => "v5.10.0";
 };
 
 on 'test' => sub {
@@ -64,6 +65,7 @@ on 'test' => sub {
 
 on 'configure' => sub {
   requires "ExtUtils::MakeMaker" => "0";
+  requires "perl" => "v5.10.0";
 };
 
 on 'develop' => sub {
