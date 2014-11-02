@@ -1,5 +1,8 @@
 {{$NEXT}}
 
+- Exclude plugins shipped with this bundle when checking for stale modules.
+
+
 0.02     2014-10-23
 
 - Removed the Test::Pod::LinkCheck and Test::Pod::No404s plugins.
