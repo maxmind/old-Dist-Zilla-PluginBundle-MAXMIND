@@ -32,18 +32,13 @@ my $weaver_ini = <<'EOF';
 [Legal]
 EOF
 
-my $mailmap = <<'EOF';
-Dave Rolsky <drolsky@maxmind.com> <autarch@urth.org>
-Greg Oschwald <goschwald@maxmind.com> Gregory Oschwald <goschwald@maxmind.com>
-Greg Oschwald <goschwald@maxmind.com> <oschwald@gmail.com>
-Olaf Alders <oalders@maxmind.com> <olaf@wundersolutions.com>
-Ran Eilam <reilam@maxmind.com> <ran.eilam@gmail.com>
-Ran Eilam <reilam@maxmind.com> <eilara@users.noreply.github.com>
-EOF
-
-my %files = (
-    'weaver.ini' => $weaver_ini,
-    '.mailmap'   => $mailmap,
+my %mailmap = map { $_ => 1 } (
+    'Dave Rolsky <drolsky@maxmind.com> <autarch@urth.org>',
+    'Greg Oschwald <goschwald@maxmind.com> Gregory Oschwald <goschwald@maxmind.com>',
+    'Greg Oschwald <goschwald@maxmind.com> <oschwald@gmail.com>',
+    'Olaf Alders <oalders@maxmind.com> <olaf@wundersolutions.com>',
+    'Ran Eilam <reilam@maxmind.com> <ran.eilam@gmail.com>',
+    'Ran Eilam <reilam@maxmind.com> <eilara@users.noreply.github.com>',
 );
 
 # These files need to actually exist on disk for the Pod::Weaver plugin to see
@@ -51,11 +46,40 @@ my %files = (
 sub before_build {
     my $self = shift;
 
-    for my $file ( keys %files ) {
-        open my $fh, '>:encoding(UTF-8)', $file;
-        print {$fh} $files{$file};
-        close $fh;
+    $self->_write_weaver_ini();
+    $self->_write_mailmap();
+
+    return;
+}
+
+sub _write_weaver_ini {
+    my $self = shift;
+
+    return if -f 'weaver.ini';
+
+    open my $fh, '>', 'weaver.ini';
+    print {$fh} $weaver_ini or die $!;
+    close $fh;
+
+    return;
+}
+
+sub _write_mailmap {
+    my $self = shift;
+
+    if ( -f '.mailmap' ) {
+        open my $fh, '<:encoding(UTF-8)', '.mailmap';
+        while (<$fh>) {
+            chomp;
+            $mailmap{$_} = 1;
+        }
     }
+
+    open my $fh, '>:encoding(UTF-8)', '.mailmap';
+    for ( keys %mailmap ) {
+        print {$fh} $_, "\n" or die $!;
+    }
+    close $fh;
 
     return;
 }
@@ -63,7 +87,7 @@ sub before_build {
 sub after_build {
     my $self = shift;
 
-    unlink $_ for keys %files;
+    unlink 'weaver.ini';
 
     return;
 }

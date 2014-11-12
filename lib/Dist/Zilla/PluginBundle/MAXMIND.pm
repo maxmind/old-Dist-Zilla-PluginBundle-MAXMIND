@@ -178,6 +178,7 @@ sub _build_plugins {
     my $self = shift;
 
     my @allow_dirty = qw(
+        .mailmap
         Changes
         cpanfile
         CONTRIBUTING.md
