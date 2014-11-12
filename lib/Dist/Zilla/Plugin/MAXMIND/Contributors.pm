@@ -38,6 +38,7 @@ Greg Oschwald <goschwald@maxmind.com> Gregory Oschwald <goschwald@maxmind.com>
 Greg Oschwald <goschwald@maxmind.com> <oschwald@gmail.com>
 Olaf Alders <oalders@maxmind.com> <olaf@wundersolutions.com>
 Ran Eilam <reilam@maxmind.com> <ran.eilam@gmail.com>
+Ran Eilam <reilam@maxmind.com> <eilara@users.noreply.github.com>
 EOF
 
 my %files = (
