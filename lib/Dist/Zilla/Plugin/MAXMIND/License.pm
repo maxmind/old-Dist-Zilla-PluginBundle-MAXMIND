@@ -22,7 +22,7 @@ sub provide_license {
 
     return Software::License::Perl_5->new(
         {
-            holder => 'MaxMind, Inc.',
+            holder => $args->{copyright_holder} || 'MaxMind, Inc.',
             year => $years,
         },
     );

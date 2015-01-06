@@ -1,5 +1,8 @@
 {{$NEXT}}
 
+- Respect the copyright_holder set in the dist.ini if one exists.
+
+
 0.04     2014-11-12
 
 - Don't delete the .mailmap file after writing to it, and don't overwrite any
