@@ -1,5 +1,9 @@
 {{$NEXT}}
 
+- Respect the license set in the dist.ini. Previously this would be ignored
+  and the default "perl5" license would be used.
+
+
 0.06     2015-01-06
 
 - Fix copyright holder for this distro. My own dzil global config messed up

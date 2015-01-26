@@ -6,7 +6,8 @@ use strict;
 use warnings;
 use autodie;
 
-use Software::License::Perl_5;
+use Module::Runtime qw( use_module );
+use String::RewritePrefix;
 
 use Moose;
 
@@ -20,7 +21,17 @@ sub provide_license {
     my $this_year = (localtime)[5] + 1900;
     my $years     = $year == $this_year ? $year : "$year - $this_year";
 
-    return Software::License::Perl_5->new(
+    my $license_class = String::RewritePrefix->rewrite(
+        {
+            '=' => q{},
+            q{} => 'Software::License::'
+        },
+        $self->zilla()->_license_class() // 'Artistic_2_0',
+    );
+
+    use_module($license_class);
+
+    return $license_class->new(
         {
             holder => $args->{copyright_holder} || 'MaxMind, Inc.',
             year => $years,
