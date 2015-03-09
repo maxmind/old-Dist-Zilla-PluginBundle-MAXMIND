@@ -354,6 +354,7 @@ sub _build_plugins {
             Test::Portability
             Test::Synopsis
             Test::TidyAll
+            Test::Version
             ),
 
         # from @Git - note that the order here is important!
