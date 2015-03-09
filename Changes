@@ -2,6 +2,13 @@
 
 0.08     2015-03-09
 
+- Replaced PkgVersion with BumpVersionAfterRelease and added
+  CheckVersionIncrement and Test::Version for good measure.
+
+- Added Test::TidyAll and a plugin to generate default tidyall.ini,
+  perltidyrc, and perlcriticrc files for our distros.
+
+
 0.07     2015-01-26
 
 - Respect the license set in the dist.ini. Previously this would be ignored
