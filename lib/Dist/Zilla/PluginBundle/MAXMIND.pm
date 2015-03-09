@@ -6,6 +6,8 @@ use strict;
 use warnings;
 use autodie;
 
+our $VERSION = '0.08';
+
 use Dist::Zilla;
 
 # Not used here, but we want it installed

@@ -6,6 +6,8 @@ use strict;
 use warnings;
 use autodie;
 
+our $VERSION = '0.08';
+
 use Module::Runtime qw( use_module );
 use String::RewritePrefix;
 
