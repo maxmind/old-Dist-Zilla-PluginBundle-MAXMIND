@@ -4,7 +4,7 @@ Dist::Zilla::PluginBundle::MAXMIND - MaxMind's plugin bundle
 
 # VERSION
 
-version 0.07
+version 0.08
 
 # AUTHOR
 

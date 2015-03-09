@@ -5,6 +5,9 @@ use v5.10;
 use strict;
 use warnings;
 use autodie;
+use namespace::autoclean;
+
+our $VERSION = '0.08';
 
 use Dist::Zilla::File::InMemory;
 

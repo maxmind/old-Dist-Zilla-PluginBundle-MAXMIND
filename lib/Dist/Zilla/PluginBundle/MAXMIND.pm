@@ -5,6 +5,9 @@ use v5.10;
 use strict;
 use warnings;
 use autodie;
+use namespace::autoclean;
+
+our $VERSION = '0.08';
 
 use Dist::Zilla;
 
@@ -14,14 +17,16 @@ use Pod::Weaver::Section::Contributors;
 # For the benefit of AutoPrereqs
 use Dist::Zilla::Plugin::Authority;
 use Dist::Zilla::Plugin::AutoPrereqs;
+use Dist::Zilla::Plugin::BumpVersionAfterRelease;
 use Dist::Zilla::Plugin::CPANFile;
 use Dist::Zilla::Plugin::CheckPrereqsIndexed;
+use Dist::Zilla::Plugin::CheckVersionIncrement;
 use Dist::Zilla::Plugin::CopyFilesFromBuild;
 use Dist::Zilla::Plugin::Git::Check;
 use Dist::Zilla::Plugin::Git::CheckFor::MergeConflicts;
 use Dist::Zilla::Plugin::Git::Commit;
 use Dist::Zilla::Plugin::Git::Contributors;
-use Dist::Zilla::Plugin::Git::Describe;
+use Dist::Zilla::Plugin::Git::GatherDir;
 use Dist::Zilla::Plugin::Git::Push;
 use Dist::Zilla::Plugin::Git::Tag;
 use Dist::Zilla::Plugin::GitHub::Meta;
@@ -29,6 +34,7 @@ use Dist::Zilla::Plugin::GitHub::Update;
 use Dist::Zilla::Plugin::InstallGuide;
 use Dist::Zilla::Plugin::MAXMIND::Contributors;
 use Dist::Zilla::Plugin::MAXMIND::License;
+use Dist::Zilla::Plugin::MAXMIND::TidyAll;
 use Dist::Zilla::Plugin::Meta::Contributors;
 use Dist::Zilla::Plugin::MetaConfig;
 use Dist::Zilla::Plugin::MetaJSON;
@@ -37,10 +43,10 @@ use Dist::Zilla::Plugin::MetaResources;
 use Dist::Zilla::Plugin::MinimumPerl;
 use Dist::Zilla::Plugin::MojibakeTests;
 use Dist::Zilla::Plugin::NextRelease;
-use Dist::Zilla::Plugin::PkgVersion;
 use Dist::Zilla::Plugin::PodSyntaxTests;
 use Dist::Zilla::Plugin::PromptIfStale;
 use Dist::Zilla::Plugin::ReadmeAnyFromPod;
+use Dist::Zilla::Plugin::RewriteVersion;
 use Dist::Zilla::Plugin::SurgicalPodWeaver;
 use Dist::Zilla::Plugin::Test::CPAN::Changes;
 use Dist::Zilla::Plugin::Test::Compile;
@@ -51,6 +57,8 @@ use Dist::Zilla::Plugin::Test::PodSpelling;
 use Dist::Zilla::Plugin::Test::Portability;
 use Dist::Zilla::Plugin::Test::ReportPrereqs;
 use Dist::Zilla::Plugin::Test::Synopsis;
+use Dist::Zilla::Plugin::Test::TidyAll;
+use Dist::Zilla::Plugin::Test::Version;
 
 use Moose;
 
@@ -224,7 +232,7 @@ sub _build_plugins {
             },
         ],
         [
-            GatherDir => {
+            'Git::GatherDir' => {
                 exclude_filename => [ keys %exclude_filename ],
                 (
                     @exclude_match ? ( exclude_match => \@exclude_match ) : ()
@@ -265,10 +273,20 @@ sub _build_plugins {
         ],
         [ 'Test::ReportPrereqs' => { verify_prereqs => 1 }, ],
         [
-            'Prereqs' => 'TestMoreDoneTesting' => {
+            'Prereqs' => 'Test::More with subtest()' => {
                 -phase       => 'test',
                 -type        => 'requires',
-                'Test::More' => '0.88',
+                'Test::More' => '0.96',
+            }
+        ],
+
+        # Because Code::TidyAll does not depend on them
+        [
+            'Prereqs' => 'Modules for use with tidyall' => {
+                -phase         => 'develop',
+                -type          => 'requires',
+                'Perl::Critic' => '1.123',
+                'Perl::Tidy'   => '20140711',
             }
         ],
         [
@@ -279,6 +297,7 @@ sub _build_plugins {
                 skip              => [
                     'Dist::Zilla::Plugin::MAXMIND::Contributors',
                     'Dist::Zilla::Plugin::MAXMIND::License',
+                    'Dist::Zilla::Plugin::MAXMIND::Tidyall',
                 ],
             }
         ],
@@ -306,6 +325,7 @@ sub _build_plugins {
             ExecDir
             ShareDir
             Manifest
+            CheckVersionIncrement
             TestRelease
             ConfirmRelease
             ),
@@ -314,16 +334,16 @@ sub _build_plugins {
             CPANFile
             Git::CheckFor::CorrectBranch
             Git::CheckFor::MergeConflicts
-            Git::Describe
             Git::Contributors
             InstallGuide
             MAXMIND::Contributors
             MAXMIND::License
+            MAXMIND::TidyAll
             Meta::Contributors
             MetaConfig
             MetaJSON
             MinimumPerl
-            PkgVersion
+            RewriteVersion
             SurgicalPodWeaver
             ),
         qw(
@@ -334,15 +354,30 @@ sub _build_plugins {
             Test::NoTabs
             Test::Portability
             Test::Synopsis
+            Test::TidyAll
+            Test::Version
             ),
 
         # from @Git - note that the order here is important!
-        [ 'Git::Check'  => { allow_dirty => \@allow_dirty }, ],
-        [ 'Git::Commit' => { allow_dirty => \@allow_dirty }, ],
+        [ 'Git::Check' => { allow_dirty => \@allow_dirty }, ],
+        [
+            'Git::Commit' => 'commit generated files' => {
+                allow_dirty => \@allow_dirty,
+            },
+        ],
         qw(
             Git::Tag
             Git::Push
             ),
+
+        'BumpVersionAfterRelease',
+        [
+            'Git::Commit' => 'commit version bump' => {
+                allow_dirty_match => ['.+'],
+                commit_msg        => 'Bump version after release'
+            },
+        ],
+        [ 'Git::Push' => 'push version bump' ],
     );
 
     return \@plugins;
@@ -356,7 +391,10 @@ sub _all_stopwords {
 
     if ( $self->_has_stopwords_file() ) {
         open my $fh, '<:encoding(UTF-8)', $self->stopwords_file();
-        push @stopwords, map { chomp; $_ } <$fh>;
+        while (<$fh>) {
+            chomp;
+            push @stopwords, $_;
+        }
         close $fh;
     }
 
@@ -385,6 +423,8 @@ sub configure {
 
     return;
 }
+
+__PACKAGE__->meta()->make_immutable();
 
 1;
 
