@@ -358,7 +358,7 @@ sub _build_plugins {
             ),
 
         # from @Git - note that the order here is important!
-        [ 'Git::Check'  => { allow_dirty => \@allow_dirty }, ],
+        [ 'Git::Check' => { allow_dirty => \@allow_dirty }, ],
         [
             'Git::Commit' => 'commit generated files' => {
                 allow_dirty => \@allow_dirty,
