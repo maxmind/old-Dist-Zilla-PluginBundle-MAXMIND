@@ -1,5 +1,7 @@
 {{$NEXT}}
 
+0.08     2015-03-09
+
 0.07     2015-01-26
 
 - Respect the license set in the dist.ini. Previously this would be ignored
