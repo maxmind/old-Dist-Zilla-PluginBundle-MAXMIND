@@ -62,8 +62,6 @@ theme = core + pbp + bugs + maintenance + cosmetic + complexity + security + tes
 
 exclude = Subroutines::ProhibitCallsToUndeclaredSubs
 
-[MM::MonkeyPatchUtils]
-
 [BuiltinFunctions::ProhibitStringySplit]
 severity = 3
 
