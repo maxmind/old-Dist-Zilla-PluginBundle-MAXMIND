@@ -14,8 +14,10 @@ use Pod::Weaver::Section::Contributors;
 # For the benefit of AutoPrereqs
 use Dist::Zilla::Plugin::Authority;
 use Dist::Zilla::Plugin::AutoPrereqs;
+use Dist::Zilla::Plugin::BumpVersionAfterRelease;
 use Dist::Zilla::Plugin::CPANFile;
 use Dist::Zilla::Plugin::CheckPrereqsIndexed;
+use Dist::Zilla::Plugin::CheckVersionIncrement;
 use Dist::Zilla::Plugin::CopyFilesFromBuild;
 use Dist::Zilla::Plugin::Git::Check;
 use Dist::Zilla::Plugin::Git::CheckFor::MergeConflicts;
@@ -37,10 +39,10 @@ use Dist::Zilla::Plugin::MetaResources;
 use Dist::Zilla::Plugin::MinimumPerl;
 use Dist::Zilla::Plugin::MojibakeTests;
 use Dist::Zilla::Plugin::NextRelease;
-use Dist::Zilla::Plugin::PkgVersion;
 use Dist::Zilla::Plugin::PodSyntaxTests;
 use Dist::Zilla::Plugin::PromptIfStale;
 use Dist::Zilla::Plugin::ReadmeAnyFromPod;
+use Dist::Zilla::Plugin::RewriteVersion;
 use Dist::Zilla::Plugin::SurgicalPodWeaver;
 use Dist::Zilla::Plugin::Test::CPAN::Changes;
 use Dist::Zilla::Plugin::Test::Compile;
@@ -306,6 +308,7 @@ sub _build_plugins {
             ExecDir
             ShareDir
             Manifest
+            CheckVersionIncrement
             TestRelease
             ConfirmRelease
             ),
@@ -323,7 +326,7 @@ sub _build_plugins {
             MetaConfig
             MetaJSON
             MinimumPerl
-            PkgVersion
+            RewriteVersion
             SurgicalPodWeaver
             ),
         qw(
@@ -338,11 +341,24 @@ sub _build_plugins {
 
         # from @Git - note that the order here is important!
         [ 'Git::Check'  => { allow_dirty => \@allow_dirty }, ],
-        [ 'Git::Commit' => { allow_dirty => \@allow_dirty }, ],
+        [
+            'Git::Commit' => 'commit generated files' => {
+                allow_dirty => \@allow_dirty,
+            },
+        ],
         qw(
             Git::Tag
             Git::Push
             ),
+
+        'BumpVersionAfterRelease',
+        [
+            'Git::Commit' => 'commit version bump' => {
+                allow_dirty_match => ['.+'],
+                commit_msg        => 'Bump version after release'
+            },
+        ],
+        [ 'Git::Push' => 'push version bump' ],
     );
 
     return \@plugins;
