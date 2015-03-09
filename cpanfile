@@ -11,7 +11,6 @@ requires "Dist::Zilla::Plugin::Git::Check" => "0";
 requires "Dist::Zilla::Plugin::Git::CheckFor::MergeConflicts" => "0";
 requires "Dist::Zilla::Plugin::Git::Commit" => "0";
 requires "Dist::Zilla::Plugin::Git::Contributors" => "0";
-requires "Dist::Zilla::Plugin::Git::Describe" => "0";
 requires "Dist::Zilla::Plugin::Git::GatherDir" => "0";
 requires "Dist::Zilla::Plugin::Git::Push" => "0";
 requires "Dist::Zilla::Plugin::Git::Tag" => "0";
