@@ -5,6 +5,7 @@ use v5.10;
 use strict;
 use warnings;
 use autodie;
+use namespace::autoclean;
 
 our $VERSION = '0.08';
 
@@ -25,7 +26,6 @@ use Dist::Zilla::Plugin::Git::Check;
 use Dist::Zilla::Plugin::Git::CheckFor::MergeConflicts;
 use Dist::Zilla::Plugin::Git::Commit;
 use Dist::Zilla::Plugin::Git::Contributors;
-use Dist::Zilla::Plugin::Git::Describe;
 use Dist::Zilla::Plugin::Git::GatherDir;
 use Dist::Zilla::Plugin::Git::Push;
 use Dist::Zilla::Plugin::Git::Tag;
@@ -334,7 +334,6 @@ sub _build_plugins {
             CPANFile
             Git::CheckFor::CorrectBranch
             Git::CheckFor::MergeConflicts
-            Git::Describe
             Git::Contributors
             InstallGuide
             MAXMIND::Contributors
@@ -392,7 +391,10 @@ sub _all_stopwords {
 
     if ( $self->_has_stopwords_file() ) {
         open my $fh, '<:encoding(UTF-8)', $self->stopwords_file();
-        push @stopwords, map { chomp; $_ } <$fh>;
+        while (<$fh>) {
+            chomp;
+            push @stopwords, $_;
+        }
         close $fh;
     }
 
@@ -421,6 +423,8 @@ sub configure {
 
     return;
 }
+
+__PACKAGE__->meta()->make_immutable();
 
 1;
 
