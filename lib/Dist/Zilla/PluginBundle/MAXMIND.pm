@@ -32,6 +32,7 @@ use Dist::Zilla::Plugin::GitHub::Update;
 use Dist::Zilla::Plugin::InstallGuide;
 use Dist::Zilla::Plugin::MAXMIND::Contributors;
 use Dist::Zilla::Plugin::MAXMIND::License;
+use Dist::Zilla::Plugin::MAXMIND::TidyAll;
 use Dist::Zilla::Plugin::Meta::Contributors;
 use Dist::Zilla::Plugin::MetaConfig;
 use Dist::Zilla::Plugin::MetaJSON;
@@ -54,6 +55,7 @@ use Dist::Zilla::Plugin::Test::PodSpelling;
 use Dist::Zilla::Plugin::Test::Portability;
 use Dist::Zilla::Plugin::Test::ReportPrereqs;
 use Dist::Zilla::Plugin::Test::Synopsis;
+use Dist::Zilla::Plugin::Test::TidyAll;
 use Dist::Zilla::Plugin::Test::Version;
 
 use Moose;
@@ -275,6 +277,16 @@ sub _build_plugins {
                 'Test::More' => '0.96',
             }
         ],
+
+        # Because Code::TidyAll does not depend on them
+        [
+            'Prereqs' => 'Modules for use with tidyall' => {
+                -phase         => 'develop',
+                -type          => 'requires',
+                'Perl::Critic' => '1.123',
+                'Perl::Tidy'   => '20140711',
+            }
+        ],
         [
             'PromptIfStale' => 'stale modules, release' => {
                 phase             => 'release',
@@ -283,6 +295,7 @@ sub _build_plugins {
                 skip              => [
                     'Dist::Zilla::Plugin::MAXMIND::Contributors',
                     'Dist::Zilla::Plugin::MAXMIND::License',
+                    'Dist::Zilla::Plugin::MAXMIND::Tidyall',
                 ],
             }
         ],
@@ -324,6 +337,7 @@ sub _build_plugins {
             InstallGuide
             MAXMIND::Contributors
             MAXMIND::License
+            MAXMIND::TidyAll
             Meta::Contributors
             MetaConfig
             MetaJSON
@@ -339,6 +353,7 @@ sub _build_plugins {
             Test::NoTabs
             Test::Portability
             Test::Synopsis
+            Test::TidyAll
             ),
 
         # from @Git - note that the order here is important!
