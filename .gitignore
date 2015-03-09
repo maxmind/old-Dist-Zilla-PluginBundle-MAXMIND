@@ -1,6 +1,8 @@
 .\#*
 .build
 /.tidyall.d
+/perltidy.LOG
+/tidyall.ERR
 Build
 Debian_CPANTS.txt
 Dist-Zilla-PluginBundle-MAXMIND-*
