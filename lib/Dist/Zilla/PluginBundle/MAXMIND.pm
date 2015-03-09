@@ -24,6 +24,7 @@ use Dist::Zilla::Plugin::Git::CheckFor::MergeConflicts;
 use Dist::Zilla::Plugin::Git::Commit;
 use Dist::Zilla::Plugin::Git::Contributors;
 use Dist::Zilla::Plugin::Git::Describe;
+use Dist::Zilla::Plugin::Git::GatherDir;
 use Dist::Zilla::Plugin::Git::Push;
 use Dist::Zilla::Plugin::Git::Tag;
 use Dist::Zilla::Plugin::GitHub::Meta;
@@ -53,6 +54,7 @@ use Dist::Zilla::Plugin::Test::PodSpelling;
 use Dist::Zilla::Plugin::Test::Portability;
 use Dist::Zilla::Plugin::Test::ReportPrereqs;
 use Dist::Zilla::Plugin::Test::Synopsis;
+use Dist::Zilla::Plugin::Test::Version;
 
 use Moose;
 
@@ -226,7 +228,7 @@ sub _build_plugins {
             },
         ],
         [
-            GatherDir => {
+            'Git::GatherDir' => {
                 exclude_filename => [ keys %exclude_filename ],
                 (
                     @exclude_match ? ( exclude_match => \@exclude_match ) : ()
