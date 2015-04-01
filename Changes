@@ -1,5 +1,9 @@
 {{$NEXT}}
 
+- Make sure that the generated .mailmap file is sorted so we don't re-order it
+  every time we regenerate it.
+
+
 0.08     2015-03-09
 
 - Replaced PkgVersion with BumpVersionAfterRelease and added

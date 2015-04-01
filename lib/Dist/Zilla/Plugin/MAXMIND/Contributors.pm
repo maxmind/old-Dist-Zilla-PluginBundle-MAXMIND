@@ -79,7 +79,7 @@ sub _write_mailmap {
     }
 
     open my $fh, '>:encoding(UTF-8)', '.mailmap';
-    for ( keys %mailmap ) {
+    for ( sort keys %mailmap ) {
         print {$fh} $_, "\n" or die $!;
     }
     close $fh;
