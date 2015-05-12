@@ -132,6 +132,8 @@ add_packages = Test::Builder
 [-RegularExpressions::RequireExtendedFormatting]
 [-RegularExpressions::RequireLineBoundaryMatching]
 
+[-Subroutines::ProhibitExplicitReturnUndef]
+
 # http://stackoverflow.com/questions/2275317/why-does-perlcritic-dislike-using-shift-to-populate-subroutine-variables
 [-Subroutines::RequireArgUnpacking]
 
