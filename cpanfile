@@ -61,8 +61,6 @@ requires "warnings" => "0";
 on 'test' => sub {
   requires "ExtUtils::MakeMaker" => "0";
   requires "File::Spec" => "0";
-  requires "IO::Handle" => "0";
-  requires "IPC::Open3" => "0";
   requires "Test::More" => "0.96";
   requires "perl" => "v5.10.0";
 };
@@ -78,6 +76,9 @@ on 'configure' => sub {
 
 on 'develop' => sub {
   requires "Code::TidyAll" => "0.24";
+  requires "File::Spec" => "0";
+  requires "IO::Handle" => "0";
+  requires "IPC::Open3" => "0";
   requires "Perl::Critic" => "1.123";
   requires "Perl::Tidy" => "20140711";
   requires "Test::CPAN::Changes" => "0.19";
