@@ -2,6 +2,10 @@
 
 0.10     2015-05-12
 
+- Disabled the Subroutines::ProhibitExplicitReturnUndef perlcritic rule in the
+  generated perlcriticrc file.
+
+
 0.09     2015-04-01
 
 - Make sure that the generated .mailmap file is sorted so we don't re-order it
