@@ -1,5 +1,8 @@
 {{$NEXT}}
 
+- Always set xt_mode to true for Test::Compile
+
+
 0.10     2015-05-12
 
 - Disabled the Subroutines::ProhibitExplicitReturnUndef perlcritic rule in the
