@@ -39,6 +39,7 @@ my %mailmap = map { $_ => 1 } (
     'Dave Rolsky <drolsky@maxmind.com> <autarch@urth.org>',
     'Greg Oschwald <goschwald@maxmind.com> Gregory Oschwald <goschwald@maxmind.com>',
     'Greg Oschwald <goschwald@maxmind.com> <oschwald@gmail.com>',
+    'Mateu X Hunter <mhunter@maxmind.com> <hunter@missoula.org>',
     'Olaf Alders <oalders@maxmind.com> <olaf@wundersolutions.com>',
     'Ran Eilam <reilam@maxmind.com> <ran.eilam@gmail.com>',
     'Ran Eilam <reilam@maxmind.com> <eilara@users.noreply.github.com>',
