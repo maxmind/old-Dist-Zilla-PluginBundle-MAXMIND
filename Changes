@@ -1,5 +1,7 @@
 {{$NEXT}}
 
+0.12     2015-11-04
+
 - Added the Dist::Zilla::Role::PluginBundle::Config::Slicer role to the bundle
   to faciliate config tweaks in dist.ini files.
 

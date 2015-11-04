@@ -4,11 +4,15 @@ Dist::Zilla::PluginBundle::MAXMIND - MaxMind's plugin bundle
 
 # VERSION
 
-version 0.11
+version 0.12
 
 # AUTHOR
 
 Dave Rolsky <drolsky@maxmind.com>
+
+# CONTRIBUTOR
+
+Mateu X Hunter <mhunter@maxmind.com>
 
 # COPYRIGHT AND LICENSE
 
