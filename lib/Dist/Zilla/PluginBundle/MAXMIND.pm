@@ -225,7 +225,8 @@ sub _build_plugins {
         ],
         [
             AutoPrereqs => {
-                $self->_has_prereqs_skip() ? ( skip => $self->prereqs_skip() )
+                $self->_has_prereqs_skip()
+                ? ( skip => $self->prereqs_skip() )
                 : ()
             },
         ],
