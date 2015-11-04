@@ -1,5 +1,9 @@
 {{$NEXT}}
 
+- Added the Dist::Zilla::Role::PluginBundle::Config::Slicer role to the bundle
+  to faciliate config tweaks in dist.ini files.
+
+
 0.11     2015-05-14
 
 - Always set xt_mode to true for Test::Compile
