@@ -1,5 +1,10 @@
 {{$NEXT}}
 
+- Configured the pod weaving to leave commented out pod in place when weaving
+  when it's not at the end of the file;  This prevents changing line numbers and
+  creating un-tidy source code.
+
+
 0.12     2015-11-04
 
 - Added the Dist::Zilla::Role::PluginBundle::Config::Slicer role to the bundle

@@ -318,6 +318,12 @@ sub _build_plugins {
         [
             UploadToCPAN => { pause_cfg_file => '.pause-maxmind' },
         ],
+        [
+            SurgicalPodWeaver => {
+                replacer           => 'replace_with_comment',
+                post_code_replacer => 'replace_with_nothing',
+            },
+        ],
 
         # from @Basic
         qw(
@@ -348,7 +354,6 @@ sub _build_plugins {
             MetaJSON
             MinimumPerl
             RewriteVersion
-            SurgicalPodWeaver
             ),
         qw(
             PodSyntaxTests
