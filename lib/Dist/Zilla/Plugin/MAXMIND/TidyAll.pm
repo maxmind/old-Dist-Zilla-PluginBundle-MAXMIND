@@ -37,6 +37,14 @@ argv = --profile=\$ROOT/perltidyrc
 [PerlCritic]
 $file_selection
 argv = --profile \$ROOT/perlcriticrc --program-extensions .pl  --program-extensions .t --program-extensions .psgi
+
+[SortLines::Naturally]
+select = .gitignore
+select = .stopwords
+
+[UniqueLines]
+select = .gitignore
+select = .stopwords
 EOF
 
 my $perltidyrc = <<'EOF';
