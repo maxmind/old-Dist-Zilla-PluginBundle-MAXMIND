@@ -77,6 +77,7 @@ sub _write_mailmap {
             chomp;
             $mailmap{$_} = 1;
         }
+        close $fh;
     }
 
     open my $fh, '>:encoding(UTF-8)', '.mailmap';

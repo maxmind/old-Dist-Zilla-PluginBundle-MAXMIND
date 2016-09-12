@@ -29,6 +29,7 @@ sub provide_license {
             '=' => q{},
             q{} => 'Software::License::'
         },
+        ## no critic (Subroutines::ProtectPrivateSubs)
         $self->zilla->_license_class // 'Perl_5',
     );
 
