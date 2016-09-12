@@ -50,8 +50,8 @@ my %mailmap = map { $_ => 1 } (
 sub before_build {
     my $self = shift;
 
-    $self->_write_weaver_ini();
-    $self->_write_mailmap();
+    $self->_write_weaver_ini;
+    $self->_write_mailmap;
 
     return;
 }

@@ -29,7 +29,7 @@ sub provide_license {
             '=' => q{},
             q{} => 'Software::License::'
         },
-        $self->zilla()->_license_class() // 'Perl_5',
+        $self->zilla->_license_class // 'Perl_5',
     );
 
     use_module($license_class);
