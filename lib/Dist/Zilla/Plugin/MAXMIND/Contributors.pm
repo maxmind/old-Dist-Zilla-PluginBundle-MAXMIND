@@ -50,8 +50,8 @@ my %mailmap = map { $_ => 1 } (
 sub before_build {
     my $self = shift;
 
-    $self->_write_weaver_ini();
-    $self->_write_mailmap();
+    $self->_write_weaver_ini;
+    $self->_write_mailmap;
 
     return;
 }
@@ -77,6 +77,7 @@ sub _write_mailmap {
             chomp;
             $mailmap{$_} = 1;
         }
+        close $fh;
     }
 
     open my $fh, '>:encoding(UTF-8)', '.mailmap';

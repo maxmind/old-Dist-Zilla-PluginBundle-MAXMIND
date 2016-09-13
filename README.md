@@ -6,6 +6,10 @@ Dist::Zilla::PluginBundle::MAXMIND - MaxMind's plugin bundle
 
 version 0.13
 
+# SUPPORT
+
+Bugs may be submitted through [https://github.com/maxmind/Dist-Zilla-PluginBundle-MAXMIND/issues](https://github.com/maxmind/Dist-Zilla-PluginBundle-MAXMIND/issues).
+
 # AUTHOR
 
 Dave Rolsky <drolsky@maxmind.com>
@@ -17,7 +21,7 @@ Dave Rolsky <drolsky@maxmind.com>
 
 # COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2014 - 2016 by MaxMind, Inc..
+This software is copyright (c) 2014 - 2016 by MaxMind, Inc.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
