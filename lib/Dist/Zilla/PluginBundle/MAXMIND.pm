@@ -9,7 +9,7 @@ use namespace::autoclean;
 
 our $VERSION = '0.13';
 
-use Dist::Zilla::PluginBundle::DROLSKY 0.69;
+use Dist::Zilla::PluginBundle::DROLSKY 0.74;
 
 use Moose;
 
