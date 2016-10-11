@@ -4,6 +4,9 @@
   when it's not at the end of the file;  This prevents changing line numbers and
   creating un-tidy source code.
 
+- Configured to use Pod::Coverage::Moose and ignore BUILD / BUILDALL / DEMOLISH
+  subroutines for pod coverage by default
+
 
 0.12     2015-11-04
 
