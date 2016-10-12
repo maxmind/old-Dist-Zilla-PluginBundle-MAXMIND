@@ -82,6 +82,24 @@ sub _maybe_rename_skip {
     return $plugin;
 }
 
+# use BUILDARGS to add default pod_coverage_also_private to ignore special Moose
+# subs.  Why isn't this just an additional default on the attribute? Because the
+# config parser for dzil will always pass in an empty arrayref even if no value
+# is set in the config file, meaning that a default attribute value will never
+# be used
+around BUILDARGS => sub {
+    my $orig = shift;
+    my $self = shift;
+
+    my $args = $orig->( $self, @_ );
+    $args->{pod_coverage_also_private} = [
+        'qr/\\A (?: BUILD(?:ARGS)? | DEMOLISH ) \\z/x',
+        @{ $args->{pod_coverage_also_private} || [] },
+    ];
+
+    return $args;
+};
+
 __PACKAGE__->meta->make_immutable;
 
 1;

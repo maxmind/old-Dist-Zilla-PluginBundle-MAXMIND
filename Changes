@@ -4,11 +4,14 @@
   when it's not at the end of the file;  This prevents changing line numbers and
   creating un-tidy source code.
 
+- Configured to use Pod::Coverage::Moose and ignore BUILD / BUILDALL / DEMOLISH
+  subroutines for pod coverage by default
+
 
 0.12     2015-11-04
 
 - Added the Dist::Zilla::Role::PluginBundle::Config::Slicer role to the bundle
-  to faciliate config tweaks in dist.ini files.
+  to facilitate config tweaks in dist.ini files.
 
 
 0.11     2015-05-14
