@@ -4,7 +4,7 @@ Dist::Zilla::PluginBundle::MAXMIND - MaxMind's plugin bundle
 
 # VERSION
 
-version 0.13
+version 0.14
 
 # SUPPORT
 
@@ -16,8 +16,11 @@ Dave Rolsky <drolsky@maxmind.com>
 
 # CONTRIBUTORS
 
+- Greg Oschwald <goschwald@maxmind.com>
 - Mark Fowler <mfowler@maxmind.com>
 - Mateu X Hunter <mhunter@maxmind.com>
+- Olaf Alders <oalders@maxmind.com>
+- Ran Eilam <reilam@maxmind.com>
 
 # COPYRIGHT AND LICENSE
 

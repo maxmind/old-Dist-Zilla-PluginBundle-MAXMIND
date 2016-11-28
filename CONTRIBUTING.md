@@ -100,6 +100,11 @@ can submit an issue report [via the web](https://github.com/maxmind/Dist-Zilla-P
 ).
 This is a good place to send your questions about the usage of this distribution.
 
+## Travis
+
+All pull requests for this distribution will be automatically tested by
+[Travis](https://travis-ci.org/) and the build status will be reported on the
+pull request page. If your build fails, please take a look at the output.
 
 ## Tidyall
 
@@ -116,11 +121,11 @@ brings up.
 
 ## Contributor Names
 
-If you send me a patch or pull request, your name and email address will be
+If you send a patch or pull request, your name and email address will be
 included in the documentation as a contributor (using the attribution on the
 commit or patch), unless you specifically request for it not to be. If you
 wish to be listed under a different name or address, you should submit a pull
 request to the .mailmap file to contain the correct mapping.
 
 This file was generated via Dist::Zilla::Plugin::GenerateFile::FromShareDir 0.012 from a
-template file originating in Dist-Zilla-PluginBundle-DROLSKY-0.68.
+template file originating in Dist-Zilla-PluginBundle-DROLSKY-0.77.
