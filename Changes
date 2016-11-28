@@ -7,6 +7,9 @@
 - Configured to use Pod::Coverage::Moose and ignore BUILD / BUILDALL / DEMOLISH
   subroutines for pod coverage by default
 
+- Depend on the latest version of the DROLSKY bundle to get some fixes in that
+  bundle.
+
 
 0.12     2015-11-04
 
