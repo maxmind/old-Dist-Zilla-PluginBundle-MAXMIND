@@ -1,5 +1,7 @@
 {{$NEXT}}
 
+0.16     2016-11-29
+
 - Use the ~/.pause-maxmind file for release credentials instead of
   ~/.pause. This was lost when we switched to subclassing the DROLSKY bundle.
 
