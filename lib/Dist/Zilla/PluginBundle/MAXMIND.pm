@@ -25,6 +25,8 @@ has '+use_github_issues' => (
 
 my %ReplacedPlugins
     = map { 'DROLSKY::' . $_ => 'MAXMIND::' . $_ } qw( Contributors License );
+$ReplacedPlugins{UploadToCPAN}
+    = [ UploadToCPAN => { pause_cfg_file => '.pause-maxmind' } ];
 
 around _build_plugins => sub {
     my $orig = shift;

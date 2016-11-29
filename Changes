@@ -1,5 +1,9 @@
 {{$NEXT}}
 
+- Use the ~/.pause-maxmind file for release credentials instead of
+  ~/.pause. This was lost when we switched to subclassing the DROLSKY bundle.
+
+
 0.15     2016-11-29
 
 - Depend on the latest version of the DROLSKY bundle to get some fixes from
