@@ -1,5 +1,5 @@
 requires "Dist::Zilla::File::InMemory" => "0";
-requires "Dist::Zilla::PluginBundle::DROLSKY" => "0.77";
+requires "Dist::Zilla::PluginBundle::DROLSKY" => "0.78";
 requires "Dist::Zilla::Role::AfterBuild" => "0";
 requires "Dist::Zilla::Role::BeforeBuild" => "0";
 requires "Dist::Zilla::Role::LicenseProvider" => "0";

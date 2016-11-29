@@ -1,5 +1,7 @@
 {{$NEXT}}
 
+0.15     2016-11-29
+
 - Depend on the latest version of the DROLSKY bundle to get some fixes from
   that bundle.
 

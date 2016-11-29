@@ -18,7 +18,7 @@ my %WriteMakefileArgs = (
   "NAME" => "Dist::Zilla::PluginBundle::MAXMIND",
   "PREREQ_PM" => {
     "Dist::Zilla::File::InMemory" => 0,
-    "Dist::Zilla::PluginBundle::DROLSKY" => "0.77",
+    "Dist::Zilla::PluginBundle::DROLSKY" => "0.78",
     "Dist::Zilla::Role::AfterBuild" => 0,
     "Dist::Zilla::Role::BeforeBuild" => 0,
     "Dist::Zilla::Role::LicenseProvider" => 0,
@@ -44,7 +44,7 @@ my %WriteMakefileArgs = (
 
 my %FallbackPrereqs = (
   "Dist::Zilla::File::InMemory" => 0,
-  "Dist::Zilla::PluginBundle::DROLSKY" => "0.77",
+  "Dist::Zilla::PluginBundle::DROLSKY" => "0.78",
   "Dist::Zilla::Role::AfterBuild" => 0,
   "Dist::Zilla::Role::BeforeBuild" => 0,
   "Dist::Zilla::Role::LicenseProvider" => 0,

@@ -4,7 +4,7 @@ Dist::Zilla::PluginBundle::MAXMIND - MaxMind's plugin bundle
 
 # VERSION
 
-version 0.14
+version 0.15
 
 # SUPPORT
 
