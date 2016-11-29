@@ -1,5 +1,9 @@
 {{$NEXT}}
 
+- Depend on the latest version of the DROLSKY bundle to get some fixes from
+  that bundle.
+
+
 0.14     2016-11-28
 
 - Configured the pod weaving to leave commented out pod in place when weaving
@@ -9,8 +13,8 @@
 - Configured to use Pod::Coverage::Moose and ignore BUILD / BUILDALL / DEMOLISH
   subroutines for pod coverage by default
 
-- Depend on the latest version of the DROLSKY bundle to get some fixes in that
-  bundle.
+- Depend on the latest version of the DROLSKY bundle to get some fixes from
+  that bundle.
 
 
 0.12     2015-11-04
