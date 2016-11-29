@@ -13,7 +13,7 @@ use Dist::Zilla::File::InMemory;
 
 use Moose;
 
-with 'Dist::Zilla::Role::BeforeBuild', 'Dist::Zilla::Role::AfterBuild';
+with 'Dist::Zilla::Role::BeforeBuild';
 
 my $weaver_ini = <<'EOF';
 [@CorePrep]
@@ -50,20 +50,7 @@ my %mailmap = map { $_ => 1 } (
 sub before_build {
     my $self = shift;
 
-    $self->_write_weaver_ini;
     $self->_write_mailmap;
-
-    return;
-}
-
-sub _write_weaver_ini {
-    my $self = shift;
-
-    return if -f 'weaver.ini';
-
-    open my $fh, '>', 'weaver.ini';
-    print {$fh} $weaver_ini or die $!;
-    close $fh;
 
     return;
 }
@@ -85,14 +72,6 @@ sub _write_mailmap {
         print {$fh} $_, "\n" or die $!;
     }
     close $fh;
-
-    return;
-}
-
-sub after_build {
-    my $self = shift;
-
-    unlink 'weaver.ini';
 
     return;
 }
