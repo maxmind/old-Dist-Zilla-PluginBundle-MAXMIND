@@ -7,7 +7,7 @@ use warnings;
 use autodie;
 use namespace::autoclean;
 
-our $VERSION = '0.16';
+our $VERSION = '0.17';
 
 use Dist::Zilla::PluginBundle::DROLSKY 0.78;
 
